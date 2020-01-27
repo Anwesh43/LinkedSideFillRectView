@@ -215,4 +215,13 @@ class SideFillStepRectView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : SideFillStepRectView {
+            val view : SideFillStepRectView = SideFillStepRectView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
