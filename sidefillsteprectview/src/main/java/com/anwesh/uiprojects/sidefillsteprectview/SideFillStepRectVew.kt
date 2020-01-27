@@ -190,4 +190,26 @@ class SideFillStepRectView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : SideFillStepRectView) {
+
+        private val animator : Animator = Animator(view)
+        private val sfc : SideStepFillCircle = SideStepFillCircle(0)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(backColor)
+            sfc.draw(canvas, paint)
+            animator.animate {
+                sfc.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            sfc.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
